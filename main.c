@@ -5,8 +5,18 @@
 
 int main(int argc, char* argv[]){
 
+//username
 char* user = "-u";
+
+//product
 char* product = "-p";
+
+//qr generation
+char* qr = "-qr";
+
+//endopoints 
+
+
 	
 	for (int i = 1; i < argc; i++){
 
