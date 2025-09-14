@@ -4,7 +4,7 @@
 #include <curl/curl.h>
 #include "endpoints.h"
 #include "call_api.h"
-
+#include "overwrite_id.h"
 //API enum and array
 enum API_ENDPOINTS{
 	MEMBER_INFO,
@@ -57,8 +57,15 @@ int main(int argc, char* argv[]){
 	if (strcmp(argv[1], user) == 0){
 		char* endpoint = get_api_url(endpoint_string[GET_ID], argv[2]);
 		printf("api url: %s \n", endpoint);		
+
+
 		char* response = call_api(endpoint);
 		printf("api response: %s \n", response);
+
+		overwrite_id(response);
+
+
+
 		free(response);
 		free(endpoint);
 	}
