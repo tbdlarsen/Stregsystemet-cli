@@ -19,3 +19,5 @@ char* get_api_url(char endpoint[], char user[]){
 	strcat(result, user);
 	return result;
 }
+
+

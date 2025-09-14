@@ -37,25 +37,29 @@ static char* endpoint_string[] = {
 
 
 
-
-
-
 int main(int argc, char* argv[]){
-			
+	
+	if (argc == 1){
+		fprintf(stderr, "Missing arguments arguments: -m \n");
+		return -1;
+	}
+
 	//username
 	char* user = "-u";
 
 	//product
 	char* product = "-p";
 
-	char* qr = "qr";
+	char* qr = "-qr";
 
 
 	//endpoints 
 	if (strcmp(argv[1], user) == 0){
 		char* endpoint = get_api_url(endpoint_string[GET_ID], argv[2]);
 		printf("api url: %s \n", endpoint);		
-		call_api(endpoint);
+		char* response = call_api(endpoint);
+		printf("api response: %s \n", response);
+		free(response);
 		free(endpoint);
 	}
 	
