@@ -49,13 +49,31 @@ int main(int argc, char* argv[]){
 
 	char* qr = "qr";
 
+	CURL* curl;
+	CURLcode result;
+
+	curl = curl_easy_init();
+	if(curl == NULL){
+		fprintf(stderr, "HTTP request failed\n");
+		return -1;
+	}
+
+
 	//endpoints 
 	if (strcmp(argv[1], user) == 0){
 		char* username = get_api_url(endpoint_string[GET_ID], argv[2]);
 		printf("api url: %s \n", username);		
+		curl_easy_setopt(curl, CURLOPT_URL, username);
 		free(username);
 	}
+	result = curl_easy_perform(curl);
 	
+	if(result != CURLE_OK){
+		fprintf(stderr, "Error: %s \n", curl_easy_strerror(result));
+		return -1;
+	}
+
+	curl_easy_cleanup(curl);
 	
 	return 0;
 }
