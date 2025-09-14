@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-
+#include <curl/curl.h>
+#include "endpoints.h"
 
 //API enum and array
 enum API_ENDPOINTS{
@@ -35,25 +35,7 @@ static char* endpoint_string[] = {
 
 
 
-char* get_user(char endpoint[], char user[]){
 
-
-
-	//allocate size + '\0' termination (1)
-	const unsigned int SIZE = strlen(endpoint)+ strlen(user) + 1;
-	printf("allocated size: %d \n", SIZE);
-	char* result = malloc(SIZE);
-	if (!result){
-		printf("allocation error in username API");
-	}
-
-	strcpy(result, endpoint);
-	strcat(result, user);
-	return result;
-
-	
-	
-}
 
 
 
@@ -69,14 +51,11 @@ int main(int argc, char* argv[]){
 
 	//endpoints 
 	if (strcmp(argv[1], user) == 0){
-		char* username = get_user(endpoint_string[GET_ID], argv[2]);
-		printf("username: %s \n", username);		
+		char* username = get_api_url(endpoint_string[GET_ID], argv[2]);
+		printf("api url: %s \n", username);		
 		free(username);
 	}
 	
 	
-	
-
-
 	return 0;
 }
