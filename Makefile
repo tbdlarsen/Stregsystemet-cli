@@ -1,16 +1,27 @@
 CC = gcc
 
-final: main.o endpoints.o call_api.o overwrite_id.o
-	$(CC) main.o endpoints.o call_api.o overwrite_id.o -o program -lcurl && rm *.o
 
-endpoints.o: endpoints.c
-	$(CC) -c endpoints.c
+TARGET = program
 
-main.o: main.c 
-	$(CC) -c main.c
+#recursively find all .c files 
+SRCS := $(shell find . -name '*.c')
 
-call_api.o: call_api.c
-	$(CC) -c call_api.c
 
-overwrite_id.o: overwrite_id.c
-	$(CC) -c overwrite_id.c
+#object files have the same name as c files but with .o
+OBJS := $(SRCS:.c=.o)
+
+
+all: $(TARGET)
+	$(shell find . -name '*.o' -delete)
+
+# compile all .o files to one binary file ^ all prerequisites
+$(TARGET): $(OBJS)
+	$(CC) -lcurl -o  $@ $^ 
+	
+
+# compile all .c files  to .o files of same name, one at a time < first prerequisite
+%.o: %.c
+	$(CC) -c $< -o $@
+
+clean: 
+	
