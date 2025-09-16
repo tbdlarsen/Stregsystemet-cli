@@ -7,6 +7,7 @@
 #include "user/overwrite_id.h"
 #include "user/user_info.h"
 #include "api/sale_body.h"
+#include "file_interaction/get_file_content.h"
 
 enum COMMANDS{
 	USER,
@@ -43,7 +44,8 @@ int main(int argc, char* argv[]){
 				overwrite_user(argv[i+1]);
 				
 			} 
-			user_id = get_user_id();
+			user_id = get_file_content("user_id.txt");
+			
 
 			char* user_info = get_user_info(user_id);
 			printf("user_info: %s \n", user_info);
