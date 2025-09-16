@@ -32,32 +32,32 @@ int main(int argc, char* argv[]){
 		return -1;
 	}
 
-	int argument_nr = 1;
+	
 	//endpoints 
 	//run all arguments; 
-	char* user = NULL;
+	char* user_id = NULL;
 	for(int i = 1; i < argc; i+=2){
-		if (strcmp(argv[argument_nr], commands[USER]) == 0){
-			user = argv[argument_nr+1];
-			if(argc == 2){
-				user = get_user_id();
+		if (strcmp(argv[i], commands[USER]) == 0){
+			if(argc != 2){
+				overwrite_user(argv[i+1]);
 				
-			} else {
-				user = overwrite_user(user);
-			}
-			
-			
-			
+			} 
+			user_id = get_user_id();
+
+			char* user_info = get_user_info(user_id);
+			printf("user_info: %s \n", user_info);
+			free(user_info);
+
 		}
 
 
 	}
 
-	printf("user: %s \n", user);
+	
 	
 
 
 	
-	free(user);
+	free(user_id);
 	return 0;
 }

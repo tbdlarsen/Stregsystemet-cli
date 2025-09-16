@@ -5,23 +5,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char* overwrite_user(char* username){
+void overwrite_user(char* username){
 
     char* endpoint = get_api_url(endpoint_string[GET_ID], username);
-	printf("api url: %s \n", endpoint);		
-
-
     char* response = call_api(endpoint);
-    printf("api response: %s \n", response);
 
     overwrite_id(response);
 
     
     free(endpoint);
-    
-
-
-    return response;
+    free(response);
+    return;
 }
 
 char* get_user_id(){
@@ -47,6 +41,19 @@ char* get_user_id(){
     fclose(fptr);
 
     return user;
+
+
+}
+
+char* get_user_info(char* user_id){
+
+    
+    char* real_url = get_api_url(endpoint_string[GET_MEMBER_INFO], user_id);
+    
+    char* response = call_api(real_url);
+
+
+    return response;
 
 
 }
