@@ -37,6 +37,7 @@ char* call_api(char api_url[]){
 	//set callback function
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 
+	
 
     //consume api
     result = curl_easy_perform(curl);

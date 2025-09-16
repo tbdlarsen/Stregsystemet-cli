@@ -6,6 +6,7 @@
 #include "api/call_api.h"
 #include "user/overwrite_id.h"
 #include "user/user_info.h"
+#include "api/sale_body.h"
 
 enum COMMANDS{
 	USER,
