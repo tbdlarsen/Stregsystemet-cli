@@ -7,7 +7,9 @@ void overwrite_id(char* user_id){
 FILE *fptr;
 
 fptr = fopen("user_id.txt", "w");
-
+if (!fptr){
+    printf("unable to open overwrite file");
+}
 
 
 //print only number to file not {"member_id :" }
@@ -20,3 +22,4 @@ for (int i = id_start; i < strlen(user_id)-1; i++){
 
 fclose(fptr);
 }
+

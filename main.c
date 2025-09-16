@@ -28,18 +28,36 @@ static char* commands[] = {
 int main(int argc, char* argv[]){
 	
 	if (argc == 1){
-		fprintf(stderr, "Missing arguments arguments: -m \n");
+		fprintf(stderr, "Missing arguments arguments\n");
 		return -1;
 	}
 
-	printf("arguments: %d", argc);
+	int argument_nr = 1;
 	//endpoints 
-	if (strcmp(argv[1], commands[USER]) == 0){
+	//run all arguments; 
+	char* user = NULL;
+	for(int i = 1; i < argc; i+=2){
+		if (strcmp(argv[argument_nr], commands[USER]) == 0){
+			user = argv[argument_nr+1];
+			if(argc == 2){
+				user = get_user_id();
+				
+			} else {
+				user = overwrite_user(user);
+			}
+			
+			
+			
+		}
 
-		overwrite_user(argv[2]);
-		
+
 	}
+
+	printf("user: %s \n", user);
 	
+
+
 	
+	free(user);
 	return 0;
 }
