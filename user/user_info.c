@@ -27,6 +27,9 @@ char* get_user_info(char* user_id){
     char* response = call_api(real_url);
 
 
+
+
+
     return response;
 
 

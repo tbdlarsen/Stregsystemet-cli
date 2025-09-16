@@ -45,7 +45,6 @@ int main(int argc, char* argv[]){
 				
 			} 
 			user_id = get_file_content("user_id.txt");
-			
 
 			char* user_info = get_user_info(user_id);
 			printf("user_info: %s \n", user_info);
