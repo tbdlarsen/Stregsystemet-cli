@@ -4,8 +4,8 @@
 #include <curl/curl.h>
 #include "api/endpoints.h"
 #include "api/call_api.h"
-#include "user/user_info.h"
 #include "api/sale_body.h"
+#include "user/user_info.h"
 #include "file_interaction/get_file_content.h"
 #include "file_interaction/overwrite_file_content.h"
 
@@ -49,6 +49,12 @@ int main(int argc, char* argv[]){
 			char* user_info = get_user_info(user_id);
 			printf("user_info: %s \n", user_info);
 			free(user_info);
+
+		}
+		if(strcmp(argv[i], commands[BUY]) == 0){
+			char* buystring = assemble_sale_body(argv[i+1]);
+			printf("%s", buystring);
+			//free(buystring);
 
 		}
 
