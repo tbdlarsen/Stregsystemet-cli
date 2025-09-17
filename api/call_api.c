@@ -11,7 +11,7 @@ typedef struct {
 
 size_t write_callback(void* data, size_t size, size_t nmemb, void *userdata);
 
-char* call_api(char api_url[]){
+char* call_api(char api_url[], char* body){
 
     //setup curl
     CURL* curl;
@@ -25,6 +25,9 @@ char* call_api(char api_url[]){
     //set URL
     curl_easy_setopt(curl, CURLOPT_URL, api_url);
 
+	if(body){
+		printf("there exists body: %s", body);
+	}
 
 	//setup response
 	Response response;
