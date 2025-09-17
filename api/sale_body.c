@@ -8,7 +8,7 @@ char* assemble_sale_body(char buystring[]){
     char* username = get_file_content("user_username.txt");
     char* room_id = get_file_content("room_number.txt");
 
-    char* boilerplate = "{\"member_id\" : %s , \"buystring\" : \"%s %s\", \"room\" : %s}";
+    char* boilerplate = "{\"member_id\" : %s, \"buystring\" : \"%s %s\", \"room\" : %s}";
     int len = strlen(boilerplate)-8 + strlen(member_id) + strlen(username) + strlen(buystring) + strlen(room_id) + 1;
     char* full_buystring = malloc(len);
     if (!full_buystring){
@@ -16,10 +16,10 @@ char* assemble_sale_body(char buystring[]){
         exit(EXIT_FAILURE);
     }
     snprintf(full_buystring, len, boilerplate, member_id, username, buystring, room_id);
-    printf("%s \n", full_buystring);
-    free(full_buystring);
+ 
+    
 
 
-    return buystring;
+    return full_buystring;
 
 }

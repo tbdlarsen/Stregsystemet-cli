@@ -54,7 +54,7 @@ int main(int argc, char* argv[]){
 		if(strcmp(argv[i], commands[BUY]) == 0){
 			char* buystring = assemble_sale_body(argv[i+1]);
 			printf("%s", buystring);
-			//free(buystring);
+			free(buystring);
 
 		}
 

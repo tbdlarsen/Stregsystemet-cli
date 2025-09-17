@@ -16,7 +16,7 @@ char* get_file_content(char path[]){
 
 
     //get username
-    fptr = fopen("user_id.txt", "r");
+    fptr = fopen(path, "r");
     if(!fptr){
         printf("unable to get content from file: %s", path);
     }
