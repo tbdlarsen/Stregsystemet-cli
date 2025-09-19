@@ -25,14 +25,22 @@ char* call_api(char api_url[], char* body){
     //set URL
     curl_easy_setopt(curl, CURLOPT_URL, api_url);
 
-	if(body){
-		printf("there exists body: %s", body);
-	}
+	
 
 	//setup response
 	Response response;
 	response.data_string = malloc(1);
 	response.size = 0;
+
+	//set request header
+	struct curl_slist *headers = NULL;
+	headers = curl_slist_append(headers, "Content-Type: application/json");
+	curl_easy_setopt(curl,CURLOPT_HTTPHEADER,headers);
+
+	//set body 
+	if(body){
+		curl_easy_setopt(curl,CURLOPT_POSTFIELDS, body);
+	}
 
 	//set memory address of response struct
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void* ) &response);
@@ -53,6 +61,7 @@ char* call_api(char api_url[], char* body){
 
     //cleanup
 	curl_easy_cleanup(curl);
+	curl_slist_free_all(headers);
 
 	return response.data_string;
 }

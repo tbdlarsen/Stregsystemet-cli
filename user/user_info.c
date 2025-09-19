@@ -27,17 +27,42 @@ void overwrite_user(char* username){
 
 
 char* get_user_info(char* user_id){
-
-    
     char* real_url = get_api_url(endpoint_string[GET_MEMBER_INFO], user_id);
     char* body = NULL;
     char* response = call_api(real_url, body);
+    char bal_path[] ="user_balance.txt";
+    char username_path[] = "user_username.txt";
+    int start_pos = 0;
+
+   
+    int counter = 0;
+    printf("asd asd asf %s, len %d", response, strlen(response));
+    
+      for (int i = 0; i< strlen(response); i++ ){
+
+        if(response[i] == ':'){
+            start_pos = i+2;
+            continue;
+        }
+        if(response[i] == ','){
+            if(counter == 0){
+                overwrite_file_content(response, bal_path,start_pos,i);
+                counter++;
+                continue;
+            }
+            if(counter == 1){
+                overwrite_file_content(response, username_path, start_pos+1, i-1);
+                break;
+            }
+
+
+        }
 
 
 
+    }
+ 
 
 
-    return response;
-
-
+     return response;
 }
