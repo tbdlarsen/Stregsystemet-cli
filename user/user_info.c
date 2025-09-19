@@ -36,7 +36,6 @@ char* get_user_info(char* user_id){
 
    
     int counter = 0;
-    printf("asd asd asf %s, len %d", response, strlen(response));
     
       for (int i = 0; i< strlen(response); i++ ){
 

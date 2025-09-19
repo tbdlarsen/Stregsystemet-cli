@@ -34,21 +34,24 @@ int main(int argc, char* argv[]){
 		return -1;
 	}
 
-	
+	char* user_id = get_file_content("user_id.txt");
+	char* user_info = get_user_info(user_id);
+	free(user_id);
+	free(user_info);
+
 	//endpoints 
-	//run all arguments; 
-	char* user_id = NULL;
+	//run all arguments;
 	for(int i = 1; i < argc; i+=2){
 		if (strcmp(argv[i], commands[USER]) == 0){
 			if(argc != 2){
 				overwrite_user(argv[i+1]);
 				
 			} 
-			user_id = get_file_content("user_id.txt");
-
+			char* user_id = get_file_content("user_id.txt");
 			char* user_info = get_user_info(user_id);
 			printf("user_info: %s \n", user_info);
 			free(user_info);
+			free(user_id);
 
 		}
 		if(strcmp(argv[i], commands[BUY]) == 0){
@@ -88,6 +91,6 @@ int main(int argc, char* argv[]){
 
 
 	
-	free(user_id);
+	
 	return 0;
 }
