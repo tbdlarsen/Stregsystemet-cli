@@ -19,8 +19,8 @@ enum COMMANDS{
 static char* commands[] = {
 	"-u",
 	"-p",
-	"-bal"
-	"-qr"
+	"-bal",
+	"-qr",
 };
 
 
@@ -60,6 +60,24 @@ int main(int argc, char* argv[]){
 			free(buystring);
 			free(response);
 
+		}
+		if(strcmp(argv[i], commands[BALANCE]) == 0){
+			char* bal = get_file_content("user_balance.txt");
+			char* end;
+
+			double balance = strtod(bal, &end);
+
+			if(bal == end){
+				printf("balance conversion failed");
+				return EXIT_FAILURE;
+			}
+			free(bal);
+
+			balance *= 0.01;
+			char* username = get_file_content("user_username.txt");
+			printf("Balance available for user %s: %.2fkr \n",username, balance);
+			
+			free(username);
 		}
 
 
