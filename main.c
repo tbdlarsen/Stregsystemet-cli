@@ -14,6 +14,7 @@ enum COMMANDS{
 	BUY,
 	BALANCE,
 	QR_CODE,
+	ROOM,
 };
 	
 static char* commands[] = {
@@ -21,6 +22,7 @@ static char* commands[] = {
 	"-p",
 	"-bal",
 	"-qr",
+	"-room",
 };
 
 
@@ -41,10 +43,11 @@ int main(int argc, char* argv[]){
 
 	//endpoints 
 	//run all arguments;
-	for(int i = 1; i < argc; i+=2){
+	for(int i = 1; i < argc; i++){
 		if (strcmp(argv[i], commands[USER]) == 0){
 			if(argc != 2){
 				overwrite_user(argv[i+1]);
+				i++;
 				
 			} 
 			char* user_id = get_file_content("user_id.txt");
@@ -56,6 +59,7 @@ int main(int argc, char* argv[]){
 		}
 		if(strcmp(argv[i], commands[BUY]) == 0){
 			char* buystring = assemble_sale_body(argv[i+1]);
+			i++;
 			char* response = call_api(endpoint_string[POST_BUY], buystring);
 
 
@@ -81,6 +85,12 @@ int main(int argc, char* argv[]){
 			printf("Balance available for user %s: %.2fkr \n",username, balance);
 			
 			free(username);
+		}
+		if(strcmp(argv[i], commands[ROOM]) == 0){
+			char* room_id = get_file_content("room_number.txt");
+			printf("room id: %s \n", room_id);
+			free(room_id);
+			return 0;
 		}
 
 
