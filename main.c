@@ -8,6 +8,7 @@
 #include "user/user_info.h"
 #include "file_interaction/get_file_content.h"
 #include "file_interaction/overwrite_file_content.h"
+#include "commands.h"
 
 enum COMMANDS{
 	USER,
@@ -45,11 +46,11 @@ int main(int argc, char* argv[]){
 	//run all arguments;
 	for(int i = 1; i < argc; i++){
 		if (strcmp(argv[i], commands[USER]) == 0){
-			if(argc != 2){
+			if(argv[i+1][0] != '-' && i+1 <= argc){
 				overwrite_user(argv[i+1]);
 				i++;
-				
 			} 
+
 			char* user_id = get_file_content("user_id.txt");
 			char* user_info = get_user_info(user_id);
 			printf("user_info: %s \n", user_info);
@@ -58,6 +59,7 @@ int main(int argc, char* argv[]){
 
 		}
 		if(strcmp(argv[i], commands[BUY]) == 0){
+		
 			char* buystring = assemble_sale_body(argv[i+1]);
 			i++;
 			char* response = call_api(endpoint_string[POST_BUY], buystring);
@@ -90,7 +92,6 @@ int main(int argc, char* argv[]){
 			char* room_id = get_file_content("room_number.txt");
 			printf("room id: %s \n", room_id);
 			free(room_id);
-			return 0;
 		}
 
 
