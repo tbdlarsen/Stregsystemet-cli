@@ -58,6 +58,10 @@ int main(int argc, char* argv[]){
 			balance_command();	
 		}
 		if(strcmp(argv[i], commands[ROOM]) == 0){
+			if(i+1 < argc && argv[i+1][0] != '-'){
+				overwrite_file_content(argv[i+1], "room_number.txt", 0, strlen(argv[i+1]));
+			}
+
 			room_command();
 		}
 		if(strcmp(argv[i], commands[ACTIVE_PRODUCTS]) == 0){
