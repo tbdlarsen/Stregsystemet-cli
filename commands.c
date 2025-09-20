@@ -42,6 +42,14 @@ void balance_command(){
     return;
 }
 
+void items_command(){
+    char* room_id = get_file_content("room_number.txt");
+    char* response = call_api(endpoint_string[GET_ACTIVE_PRODUCTS], room_id);
+    free(room_id);
+    printf("%s \n", response);
+    free(response);
+    return;
+}
 
 void buy_command(char** itemlist){
 
@@ -50,7 +58,7 @@ void buy_command(char** itemlist){
     char* response = call_api(endpoint_string[POST_BUY], buystring);
     free(buystring);
 
-    printf("%s", response);
+    printf("%s \n", response);
     free(response);
 
 

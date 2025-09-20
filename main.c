@@ -16,6 +16,7 @@ enum COMMANDS{
 	BALANCE,
 	QR_CODE,
 	ROOM,
+	ACTIVE_PRODUCTS,
 };
 	
 static char* commands[] = {
@@ -24,6 +25,7 @@ static char* commands[] = {
 	"-bal",
 	"-qr",
 	"-room",
+	"-a"
 };
 
 
@@ -57,6 +59,9 @@ int main(int argc, char* argv[]){
 		}
 		if(strcmp(argv[i], commands[ROOM]) == 0){
 			room_command();
+		}
+		if(strcmp(argv[i], commands[ACTIVE_PRODUCTS]) == 0){
+			items_command();
 		}
 		if(strcmp(argv[i], commands[BUY]) == 0){
 			char* items = malloc(1);
