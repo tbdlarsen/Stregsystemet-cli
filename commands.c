@@ -44,8 +44,10 @@ void balance_command(){
 
 void items_command(){
     char* room_id = get_file_content("room_number.txt");
-    char* response = call_api(endpoint_string[GET_ACTIVE_PRODUCTS], room_id);
+    char* api_url = get_api_url(endpoint_string[GET_ACTIVE_PRODUCTS], room_id);
     free(room_id);
+    char* response = call_api(api_url, NULL);
+    free(api_url);
     printf("%s \n", response);
     free(response);
     return;
