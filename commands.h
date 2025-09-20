@@ -4,5 +4,6 @@
 void user_command();
 void balance_command();
 void room_command();
+void buy_command(char** itemlist);
 
 #endif

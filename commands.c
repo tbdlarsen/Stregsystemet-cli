@@ -1,6 +1,9 @@
 #include "commands.h"
 #include "file_interaction/get_file_content.h"
 #include "user/user_info.h"
+#include "api/sale_body.h"
+#include "api/call_api.h"
+#include "api/endpoints.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -37,4 +40,19 @@ void balance_command(){
     free(username);
 
     return;
+}
+
+
+void buy_command(char** itemlist){
+
+    char* buystring = assemble_sale_body(*itemlist);
+    free(*itemlist);
+    char* response = call_api(endpoint_string[POST_BUY], buystring);
+    free(buystring);
+
+    printf("%s", response);
+    free(response);
+
+
+
 }

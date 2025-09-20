@@ -62,7 +62,6 @@ int main(int argc, char* argv[]){
 			char* items = malloc(1);
 			items[0] = '\0';
 			
-
 			for(int j = i+1; j < argc; j++){
 				if(argv[j][0] == '-'){
 					i = j-1;
@@ -72,17 +71,12 @@ int main(int argc, char* argv[]){
 				strcat(items, argv[j]);
 				strcat(items, " ");
 			}
-			printf("%d", i);
+			
+			buy_command(&items);
 			
 			
 			
-			char* buystring = assemble_sale_body(items);
-			free(items);
-			char* response = call_api(endpoint_string[POST_BUY], buystring);
-			free(buystring);
-
-			printf("%s", response);
-			free(response);
+			
 
 
 		}
