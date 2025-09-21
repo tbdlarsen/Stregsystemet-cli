@@ -9,10 +9,18 @@
 
 void user_command(){
     char* user_id = get_file_content("user_id.txt");
+   
     char* user_info = get_user_info(user_id);
-    printf("user_info: %s \n", user_info);
     free(user_info);
     free(user_id);
+
+    char* username = get_file_content("user_username.txt");
+
+
+    printf("Username: %s \n",username);
+    balance_command();
+    
+    
     return;
 }
 void room_command(){
@@ -22,23 +30,8 @@ void room_command(){
 }
 
 void balance_command(){
-    char* bal = get_file_content("user_balance.txt");
-    char* end;
-
-    double balance = strtod(bal, &end);
-
-    if(bal == end){
-        printf("balance conversion failed");
-        exit (EXIT_FAILURE);
-    }
-    free(bal);
-
-    balance /= 100;
-    char* username = get_file_content("user_username.txt");
-    printf("Balance available for user %s: %.2fkr \n",username, balance);
-    
-    free(username);
-
+    double balance = balance_converted();
+    printf("Balance: %.2fkr \n", balance);
     return;
 }
 
@@ -64,5 +57,22 @@ void buy_command(char** itemlist){
     free(response);
 
 
+
+}
+
+double balance_converted(){
+    char* bal = get_file_content("user_balance.txt");
+    char* end;
+
+    double balance = strtod(bal, &end);
+
+    if(bal == end){
+        printf("balance conversion failed");
+        exit (EXIT_FAILURE);
+    }
+    free(bal);
+
+    balance /= 100;
+    return balance;
 
 }

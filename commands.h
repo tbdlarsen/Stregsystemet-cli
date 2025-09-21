@@ -6,5 +6,5 @@ void balance_command();
 void room_command();
 void items_command();
 void buy_command(char** itemlist);
-
+double balance_converted();
 #endif
