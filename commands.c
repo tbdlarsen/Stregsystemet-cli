@@ -60,6 +60,18 @@ void buy_command(char** itemlist){
 
 }
 
+void recent_command(){
+    char* userid = get_file_content("user_id.txt");
+    char* api_url = get_api_url(endpoint_string[GET_PREV_SALES], userid);
+    char* recent = call_api(api_url, NULL);
+    free(api_url);
+    free(userid);
+    printf("recently purchased items: \n %s", recent);
+    free(recent);
+    return;
+}
+
+
 double balance_converted(){
     char* bal = get_file_content("user_balance.txt");
     char* end;
