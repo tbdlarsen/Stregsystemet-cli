@@ -4,7 +4,9 @@
 #include "api/sale_body.h"
 #include "api/call_api.h"
 #include "api/endpoints.h"
+#include "recent_bought.h"
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 
 void user_command(){
@@ -19,7 +21,7 @@ void user_command(){
 
     printf("Username: %s \n",username);
     balance_command();
-    
+    recent_command();    
     
     return;
 }
@@ -66,7 +68,10 @@ void recent_command(){
     char* recent = call_api(api_url, NULL);
     free(api_url);
     free(userid);
-    printf("recently purchased items: \n %s", recent);
+
+    recent_bought(recent);
+    
+
     free(recent);
     return;
 }
