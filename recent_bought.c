@@ -11,7 +11,7 @@ void recent_bought(const char* input){
     const char* end_string = "\"";
     
 
-    char hour[3], minute[3], day[3], month[3];
+    
     char product[100] = {0};
     char price[6] = {0};
     
@@ -22,8 +22,11 @@ void recent_bought(const char* input){
         exit(EXIT_FAILURE);
     }
     time_start += strlen(time_string);
-    sscanf(time_start, "%*4d-%2s-%2sT%2s:%2s", month, day, hour, minute);
-
+    int mon, day, hour, min;
+    if (sscanf(time_start, "%*4d-%2d-%2dT%2d:%2d", &mon, &day, &hour, &min) != 4) {
+    printf("timestamp parse failed\n");
+    exit(EXIT_FAILURE);
+}
    
 
 
@@ -46,29 +49,22 @@ void recent_bought(const char* input){
     //get price of product
     char* price_start = strstr(input, price_string);
     if(!price_start){
-        printf("purchase price not found");
+        printf("purchase price not found\n");
         exit(EXIT_FAILURE);
     }
     price_start += strlen(price_string);
-    char* price_end = strstr(price_start, "}");
-    size_t price_len = price_end-price_start;
-    strncpy(price, price_start, price_len);
-    price[price_len] = '\0';
 
-    char* end;
+    double balance = 0;
 
-    double balance = strtod(price, &end);
-
-    if(price == end){
+    if(sscanf(price_start, "%lf", &balance) != 1){
         printf("balance conversion failed");
-        exit (EXIT_FAILURE);
+        exit(EXIT_FAILURE);
     }
-
 
     balance /= 100;
 
     printf("Most recent purchase: \n");
-    printf("    Time of purchase: %s:%s %s-%s \n", hour, minute, day, month);
+    printf("    Time of purchase: %02d:%02d %02d-%02d \n", hour, min, day, mon);
     printf("    Product: %s \n", product);
     printf("    Price: %.2lf kr \n", balance);
 

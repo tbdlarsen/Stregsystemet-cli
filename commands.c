@@ -76,6 +76,12 @@ void recent_command(){
     return;
 }
 
+void help_command(){
+    char* help_page = get_file_content("help_file.txt");
+    printf("%s", help_page);
+    free(help_page);
+    return;
+}
 
 double balance_converted(){
     char* bal = get_file_content("user_balance.txt");

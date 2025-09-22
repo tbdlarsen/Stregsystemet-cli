@@ -20,8 +20,10 @@ char* get_file_content(char path[]){
     if(!fptr){
         printf("unable to get content from file: %s", path);
     }
-    fgets(content, size, fptr);
+    size_t read = fread(content, 1 , size, fptr);
     fclose(fptr);
+    
+    content[read] = '\0';
 
     return content;
 

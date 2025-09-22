@@ -17,7 +17,8 @@ enum COMMANDS{
 	QR_CODE,
 	ROOM,
 	ACTIVE_PRODUCTS,
-	PREV_SALES
+	PREV_SALES,
+	HELP,
 };
 	
 static char* commands[] = {
@@ -28,6 +29,7 @@ static char* commands[] = {
 	"-room",
 	"-a",
 	"-prev",
+	"-h",
 	
 };
 
@@ -89,6 +91,9 @@ int main(int argc, char* argv[]){
 		}
 		if(strcmp(argv[i], commands[PREV_SALES]) == 0){
 			recent_command();
+		}
+		if(strcmp(argv[i], commands[HELP]) == 0){
+			help_command();
 		}
 	}
 

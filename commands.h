@@ -7,5 +7,7 @@ void room_command();
 void items_command();
 void buy_command(char** itemlist);
 void recent_command();
+void help_command();
 double balance_converted();
+
 #endif

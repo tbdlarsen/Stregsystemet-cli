@@ -1,0 +1,9 @@
+List of commands based on parameter:
+-h                      Brings up this page.
+-u <username>           Gets general user information, if username is provided it overwrites the saved user.
+-p <buystring>          Attempts to buy what is provided in the buystring, based on saved user.
+-bal                    Displays the balance available for saved user.
+-room <number>          Displays the room id, if room id is provieded it overwrites the saved room.
+-a                      Lists all available products.
+-prev                   Displays last purchased item.
+
