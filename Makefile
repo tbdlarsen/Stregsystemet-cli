@@ -12,16 +12,16 @@ OBJS := $(SRCS:.c=.o)
 
 
 all: $(TARGET)
-	$(shell find . -name '*.o' -delete)
+	
 
 # compile all .o files to one binary file ^ all prerequisites
 $(TARGET): $(OBJS)
-	$(CC) -lcurl -o  $@ $^ 
+	$(CC) -o  $@ $^ -lcurl 
 	
 
 # compile all .c files  to .o files of same name, one at a time < first prerequisite
 %.o: %.c
 	$(CC) -c $< -o $@
 
-clean: 
-	
+clean:
+	rm -f $(OBJS) $(TARGET)
