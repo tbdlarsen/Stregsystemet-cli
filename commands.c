@@ -5,6 +5,7 @@
 #include "api/call_api.h"
 #include "api/endpoints.h"
 #include "recent_bought.h"
+#include "list_all_items.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -43,7 +44,8 @@ void items_command(){
     free(room_id);
     char* response = call_api(api_url, NULL);
     free(api_url);
-    printf("%s \n", response);
+
+    list_all_items(response);
     free(response);
     return;
 }
