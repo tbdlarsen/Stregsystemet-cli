@@ -54,9 +54,26 @@ void buy_command(char** itemlist){
     free(*itemlist);
     char* response = call_api(endpoint_string[POST_BUY], buystring);
     free(buystring);
+    char* bal_string_start = " \"member_balance\": \"";
+    
+    char* price_start = strstr(response, bal_string_start);
+    if(!price_start){
+        printf("purchase price not found\n");
+        exit(EXIT_FAILURE);
+    }
+    price_start += strlen(bal_string_start);
 
-    printf("%s \n", response);
+    double remaining_balance = 0;
+
+    if(sscanf(price_start, "%lf", &remaining_balance) != 1){
+        printf("balance conversion failed (buy)");
+        exit(EXIT_FAILURE);
+    }
+
     free(response);
+
+    printf("Purchase successful \nRemaining balance: %.2lfkr \n", remaining_balance);
+    
 
 
 
