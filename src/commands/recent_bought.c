@@ -1,7 +1,7 @@
 
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void recent_bought(const char* input){
     

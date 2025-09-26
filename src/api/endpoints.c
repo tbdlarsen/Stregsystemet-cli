@@ -1,8 +1,9 @@
 
+#include "api/endpoints.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "endpoints.h"
+
 
 
 char* get_api_url(char endpoint[], char user[]){

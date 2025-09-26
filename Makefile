@@ -1,27 +1,26 @@
 CC = gcc
 
+CFLAGS = -Wall -Wextra -Iinclude -O2
+SRC = $(shell find src -name '*.c')
+OBJ = $(SRC:src/%.c=build/%.o)
 
-TARGET = program
-
-#recursively find all .c files 
-SRCS := $(shell find . -name '*.c')
-
-
-#object files have the same name as c files but with .o
-OBJS := $(SRCS:.c=.o)
+BIN = build/sclien
 
 
-all: $(TARGET)
+
+all: $(BIN)
+	rm build/main.o
 	
 
-# compile all .o files to one binary file ^ all prerequisites
-$(TARGET): $(OBJS)
-	$(CC) -o  $@ $^ -lcurl 
-	
+$(BIN): $(OBJ)
+	mkdir -p build
+	$(CC) $(CFLAGS) $^ -o $@ -lcurl
 
-# compile all .c files  to .o files of same name, one at a time < first prerequisite
-%.o: %.c
-	$(CC) -c $< -o $@
+build/%.o: src/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@  
 
-clean:
-	rm -f $(OBJS) $(TARGET)
+clean: 
+	rm -rf build
+
+.Phony: all clean
