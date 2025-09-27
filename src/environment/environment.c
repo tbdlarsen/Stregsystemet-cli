@@ -16,20 +16,28 @@ const char* files[] = {
     "user_name.txt",
 };
 
-char* environment(){
+char* get_environment(){
     const char* home = getenv("HOME");
     if(!home){
         printf("$HOME envionment not found");
         exit(EXIT_FAILURE);
     }
     
-    
-    char folder_path[512];
-    snprintf(folder_path, sizeof(folder_path), "%s%s", home, LINUX_FOLDER_NAME);
     int len = strlen(home) + strlen(LINUX_FOLDER_NAME);
+    char* folder_path = malloc(len);
+    snprintf(folder_path, sizeof(folder_path), "%s%s", home, LINUX_FOLDER_NAME);
+    
     folder_path[len] = '\0';
     printf("environment: %s \n", folder_path);
 
+    return folder_path;
+
+    }
+
+
+void create_env(){
+    char* folder_path = get_environment();
+    printf("%s \n", folder_path);
     struct stat st = {0};
     if (stat(folder_path, &st) == -1){
         if(mkdir(folder_path, 0700) == -1){
@@ -53,14 +61,7 @@ char* environment(){
             fclose(fp);
 
         }
-
     }
-
-
-
-
-    return folder_path;
-
-
-
+    free(folder_path);
+    return;
 }

@@ -1,6 +1,7 @@
 #ifndef ENVIRONMENT_H
 #define ENVIRONMENT_H
 
-char* environment();
+char* get_environment();
+void create_env();
 
 #endif

@@ -5,7 +5,7 @@
 
 char* get_file_content(char path[]){
 
-    char* env_path = environment();
+    char* env_path = get_environment();
     int len = strlen(env_path) + strlen(path);
     char* full_path =(char*) malloc(len +1);
     if(!full_path){
