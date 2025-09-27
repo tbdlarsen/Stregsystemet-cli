@@ -7,9 +7,9 @@
 #include "api/sale_body.h"
 #include "commands/user_info.h"
 #include "commands/commands.h"
+#include "environment/environment.h"
 #include "file_interaction/get_file_content.h"
 #include "file_interaction/overwrite_file_content.h"
-
 
 enum COMMANDS{
 	USER,
@@ -39,6 +39,7 @@ static char* commands[] = {
 
 
 int main(int argc, char* argv[]){
+	environment();
 	
 	if (argc == 1){
 		fprintf(stderr, "Missing arguments arguments\n");
