@@ -1,6 +1,6 @@
 #ifndef ENVIRONMENT_H
 #define ENVIRONMENT_H
 
-void environment();
+char* environment();
 
 #endif

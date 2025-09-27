@@ -1,6 +1,7 @@
 #include "environment/environment.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -15,7 +16,7 @@ const char* files[] = {
     "user_name.txt",
 };
 
-void environment(){
+char* environment(){
     const char* home = getenv("HOME");
     if(!home){
         printf("$HOME envionment not found");
@@ -25,6 +26,8 @@ void environment(){
     
     char folder_path[512];
     snprintf(folder_path, sizeof(folder_path), "%s%s", home, LINUX_FOLDER_NAME);
+    int len = strlen(home) + strlen(LINUX_FOLDER_NAME);
+    folder_path[len] = '\0';
     printf("environment: %s \n", folder_path);
 
     struct stat st = {0};
@@ -56,7 +59,7 @@ void environment(){
 
 
 
-    return;
+    return folder_path;
 
 
 
