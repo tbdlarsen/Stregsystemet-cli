@@ -59,6 +59,7 @@ int main(int argc, char* argv[]){
 				overwrite_user(argv[i+1]);
 				i++;
 			} 
+			
 			user_command();
 		}
 		if(strcmp(argv[i], commands[BALANCE]) == 0){

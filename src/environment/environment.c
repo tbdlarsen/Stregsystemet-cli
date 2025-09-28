@@ -59,6 +59,12 @@ void create_env(){
     snprintf(file_path, sizeof(file_path), "%s/%s", folder_path, files[0]);
     FILE* fp = fopen(file_path, "w");
     fprintf(fp, "%s", help_page);
+
+    snprintf(file_path, sizeof(file_path), "%s/%s", folder_path, files[1]);
+    fp = fopen(file_path, "w");
+    fprintf(fp, "10");
+
+
     fclose(fp);    
 
 

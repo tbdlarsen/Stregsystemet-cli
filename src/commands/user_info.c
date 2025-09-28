@@ -18,6 +18,8 @@ void overwrite_user(char* username){
     int end_pos = strlen(response)-1;
 
     overwrite_file_content(response, path, start_pos,end_pos);
+    char username_path[] = "/user_username.txt";
+    overwrite_file_content(username, username_path, 0, strlen(username));
 
     
     free(endpoint);
