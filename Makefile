@@ -9,7 +9,7 @@ BIN = build/sclien
 
 
 all: $(BIN)
-	rm build/main.o
+	find ./build -type f -name "*.o" -exec rm -f {} +
 	
 
 $(BIN): $(OBJ)

@@ -12,6 +12,7 @@
 
 void user_command(){
     char* user_id = get_file_content("/user_id.txt");
+    
    
     char* user_info = get_user_info(user_id);
     free(user_info);
