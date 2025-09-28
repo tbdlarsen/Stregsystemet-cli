@@ -16,6 +16,18 @@ const char* files[] = {
     "user_username.txt",
 };
 
+const char* help_page = 
+    "List of commands based on parameter:\n\n\n"
+    "-h                      Brings up this page.\n\n"
+    "-u <username>           Gets general user information, if username is provided it overwrites the saved user.\n\n"
+    "-p <buystring>          Attempts to buy what is provided in the buystring, based on saved user.\n\n"
+    "-bal                    Displays the balance available for saved user.\n\n"
+    "-room <number>          Displays the room id, if room id is provieded it overwrites the saved room.\n\n"
+    "-a                      Lists all available products.\n\n"
+    "-prev                   Displays last purchased item.\n\n";
+
+
+
 char* get_environment(){
     const char* home = getenv("HOME");
     if(!home){
@@ -43,8 +55,15 @@ void create_env(){
 
     }
 
-    for(int i = 0; i< TXT_FILES; i++){
-        char file_path[1024];
+    char file_path[1024];
+    snprintf(file_path, sizeof(file_path), "%s/%s", folder_path, files[0]);
+    FILE* fp = fopen(file_path, "w");
+    fprintf(fp, "%s", help_page);
+    fclose(fp);    
+
+
+    for(int i = 1; i< TXT_FILES; i++){
+        
         snprintf(file_path, sizeof(file_path), "%s/%s", folder_path, files[i]);
 
         if(access(file_path, F_OK) != 0){
@@ -57,6 +76,7 @@ void create_env(){
             fclose(fp);
 
         }
+        
     }
     free(folder_path);
     return;

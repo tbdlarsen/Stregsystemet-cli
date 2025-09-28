@@ -39,7 +39,7 @@ char* get_file_content(char path[]){
     fclose(fptr);
     
     content[read] = '\0';
-    if(strcmp(content, "") == 0){
+    if(strcmp(content, "") == 0 && strcmp(path, "/help_file.txt") != 0){
         printf("No prior user found, please provide username\n");
         exit(EXIT_FAILURE);
     }
