@@ -11,13 +11,13 @@
 #include <stdio.h>
 
 void user_command(){
-    char* user_id = get_file_content("data/user_id.txt");
+    char* user_id = get_file_content("/user_id.txt");
    
     char* user_info = get_user_info(user_id);
     free(user_info);
     free(user_id);
 
-    char* username = get_file_content("data/user_username.txt");
+    char* username = get_file_content("/user_username.txt");
 
 
     printf("Username: %s \n",username);
@@ -27,7 +27,7 @@ void user_command(){
     return;
 }
 void room_command(){
-    char* room_id = get_file_content("data/room_number.txt");
+    char* room_id = get_file_content("/room_number.txt");
     printf("room id: %s \n", room_id);
     free(room_id);
 }
@@ -39,7 +39,7 @@ void balance_command(){
 }
 
 void items_command(){
-    char* room_id = get_file_content("data/room_number.txt");
+    char* room_id = get_file_content("/room_number.txt");
     char* api_url = get_api_url(endpoint_string[GET_ACTIVE_PRODUCTS], room_id);
     free(room_id);
     char* response = call_api(api_url, NULL);
@@ -82,7 +82,7 @@ void buy_command(char** itemlist){
 }
 
 void recent_command(){
-    char* userid = get_file_content("data/user_id.txt");
+    char* userid = get_file_content("/user_id.txt");
     char* api_url = get_api_url(endpoint_string[GET_PREV_SALES], userid);
     char* recent = call_api(api_url, NULL);
     free(api_url);
@@ -96,14 +96,14 @@ void recent_command(){
 }
 
 void help_command(){
-    char* help_page = get_file_content("data/help_file.txt");
+    char* help_page = get_file_content("/help_file.txt");
     printf("%s", help_page);
     free(help_page);
     return;
 }
 
 double balance_converted(){
-    char* bal = get_file_content("data/user_balance.txt");
+    char* bal = get_file_content("/user_balance.txt");
     char* end;
 
     double balance = strtod(bal, &end);

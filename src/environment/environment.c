@@ -13,7 +13,7 @@ const char* files[] = {
     "room_id.txt",
     "user_balance.txt",
     "user_id.txt",
-    "user_name.txt",
+    "user_username.txt",
 };
 
 char* get_environment(){
@@ -23,12 +23,9 @@ char* get_environment(){
         exit(EXIT_FAILURE);
     }
     
-    int len = strlen(home) + strlen(LINUX_FOLDER_NAME);
-    char* folder_path = malloc(len);
-    snprintf(folder_path, sizeof(folder_path), "%s%s", home, LINUX_FOLDER_NAME);
-    
-    folder_path[len] = '\0';
-    printf("environment: %s \n", folder_path);
+    int len = strlen(home) + strlen(LINUX_FOLDER_NAME) +1;
+    char* folder_path = malloc(len +1);
+    snprintf(folder_path, len, "%s%s", home, LINUX_FOLDER_NAME);
 
     return folder_path;
 
@@ -37,7 +34,6 @@ char* get_environment(){
 
 void create_env(){
     char* folder_path = get_environment();
-    printf("%s \n", folder_path);
     struct stat st = {0};
     if (stat(folder_path, &st) == -1){
         if(mkdir(folder_path, 0700) == -1){

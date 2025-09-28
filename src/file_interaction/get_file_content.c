@@ -15,31 +15,34 @@ char* get_file_content(char path[]){
     }
     strcpy(full_path, env_path);
     strcat(full_path, path);
-    printf("Full path %s \n", full_path);
-    free(full_path);
 
-    exit(EXIT_SUCCESS);
+    free(env_path);
+    
     
     FILE* fptr;
-    fptr = fopen(path, "rb");
+    fptr = fopen(full_path, "rb");
     if(!fptr){
-        printf("unable to find filesize for file: %s", path);
+        printf("unable to find filesize for file: %s", full_path);
     }
     fseek(fptr, 0, SEEK_END);
     int size = ftell(fptr) + 1;
     char* content = malloc(size);
     fclose(fptr);
 
-
+    
     //get username
-    fptr = fopen(path, "r");
+    fptr = fopen(full_path, "r");
     if(!fptr){
-        printf("unable to get content from file: %s", path);
+        printf("unable to get content from file: %s", full_path);
     }
     size_t read = fread(content, 1 , size, fptr);
     fclose(fptr);
     
     content[read] = '\0';
+    free(full_path);
+
+  
+
 
     return content;
 

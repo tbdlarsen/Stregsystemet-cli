@@ -46,7 +46,7 @@ int main(int argc, char* argv[]){
 		return -1;
 	}
 
-	char* user_id = get_file_content("data/user_id.txt");
+	char* user_id = get_file_content("/user_id.txt");
 	char* user_info = get_user_info(user_id);
 	free(user_id);
 	free(user_info);
@@ -66,7 +66,7 @@ int main(int argc, char* argv[]){
 		}
 		if(strcmp(argv[i], commands[ROOM]) == 0){
 			if(i+1 < argc && argv[i+1][0] != '-'){
-				overwrite_file_content(argv[i+1], "data/room_number.txt", 0, strlen(argv[i+1]));
+				overwrite_file_content(argv[i+1], "/room_number.txt", 0, strlen(argv[i+1]));
 			}
 
 			room_command();

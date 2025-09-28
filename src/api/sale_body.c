@@ -4,9 +4,9 @@
 #include <stdio.h>
 char* assemble_sale_body(char buystring[]){
 
-    char* member_id = get_file_content("data/user_id.txt"); 
-    char* username = get_file_content("data/user_username.txt");
-    char* room_id = get_file_content("data/room_number.txt");
+    char* member_id = get_file_content("/user_id.txt"); 
+    char* username = get_file_content("/user_username.txt");
+    char* room_id = get_file_content("/room_number.txt");
 
     char* boilerplate = "{\"member_id\" : %s, \"buystring\" : \"%s %s\", \"room\" : %s}";
     int len = strlen(boilerplate)-8 + strlen(member_id) + strlen(username) + strlen(buystring) + strlen(room_id) + 1;
