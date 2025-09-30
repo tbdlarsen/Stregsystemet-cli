@@ -39,7 +39,7 @@ static char* commands[] = {
 
 
 int main(int argc, char* argv[]){
-	create_env();
+	//create_env();
 	
 	if (argc == 1){
 		fprintf(stderr, "Missing arguments arguments\n");

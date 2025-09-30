@@ -56,6 +56,8 @@ void create_env(){
     }
 
     char file_path[1024];
+
+
     snprintf(file_path, sizeof(file_path), "%s/%s", folder_path, files[0]);
     FILE* fp = fopen(file_path, "w");
     if(!fp){
@@ -65,12 +67,13 @@ void create_env(){
     fprintf(fp, "%s", help_page);
     fclose(fp);
 
+    snprintf(file_path, sizeof(file_path), "%s/%s", folder_path, files[1]);
     fp = fopen(file_path, "w");
     if(!fp){
         printf("cannot write default room number");
         exit(EXIT_FAILURE);
     }
-    snprintf(file_path, sizeof(file_path), "%s/%s", folder_path, files[1]);
+
     fp = fopen(file_path, "w");
     fprintf(fp, "10");
 

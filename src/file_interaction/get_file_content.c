@@ -18,7 +18,6 @@ char* get_file_content(char path[]){
 
     free(env_path);
     
-    
     FILE* fptr;
     fptr = fopen(full_path, "rb");
     if(!fptr){

@@ -29,7 +29,7 @@ void user_command(){
 }
 void room_command(){
     char* room_id = get_file_content("/room_id.txt");
-    printf("room id: %s \n", room_id);
+    printf("room id: %s\n", room_id);
     free(room_id);
 }
 
