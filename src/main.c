@@ -39,8 +39,7 @@ static char* commands[] = {
 
 
 int main(int argc, char* argv[]){
-	//create_env();
-	
+	create_env();
 	if (argc == 1){
 		fprintf(stderr, "Missing arguments arguments\n");
 		return -1;
@@ -67,7 +66,7 @@ int main(int argc, char* argv[]){
 		}
 		if(strcmp(argv[i], commands[ROOM]) == 0){
 			if(i+1 < argc && argv[i+1][0] != '-'){
-				overwrite_file_content(argv[i+1], "/room_number.txt", 0, strlen(argv[i+1]));
+				overwrite_file_content(argv[i+1], "/room_id.txt", 0, strlen(argv[i+1]));
 			}
 
 			room_command();

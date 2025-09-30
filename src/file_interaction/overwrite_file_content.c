@@ -26,10 +26,9 @@ void overwrite_file_content(char content[], char path[], int start_pos, int end_
     if (!fptr){
         printf("unable to open overwrite file: %s\n ", full_path);
     }
-
+    
 
     for (int i = start_pos; i < end_pos; i++){
-        
         fprintf(fptr,"%c",content[i]);
     
     }
