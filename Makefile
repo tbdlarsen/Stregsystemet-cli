@@ -3,16 +3,21 @@ CFLAGS = -Wall -Wextra -Iinclude -O2
 SRC = $(shell find src -name '*.c')
 OBJ = $(SRC:src/%.c=build/%.o)
 
-BIN_DIR = $(HOME)/bin
-TARGET = $(BIN_DIR)/sclien
+
 
 UNAME_S := $(shell uname -s)
 
 
 ifeq ($(UNAME_S),Linux)
     OS_SUPPORTED = yes
+	BIN_DIR = $(HOME)/bin
+	TARGET = $(BIN_DIR)/sclien
+	DATA_DIR = $(HOME)/.local/share/sclien
 else ifeq ($(UNAME_S),Darwin)
-    OS_SUPPORTED = no
+    OS_SUPPORTED = yes
+	BIN_DIR = $(HOME)/bin
+	TARGET = $(BIN_DIR)/sclien
+	DATA_DIR = $(HOME)/.local/share/sclien
 else
     OS_SUPPORTED = no
 endif
@@ -37,5 +42,9 @@ build/%.o: src/%.c
 clean:
 	@echo "Cleaning build directory..."
 	rm -rf build
+
+uninstall:
+	rm $(TARGET)
+	rm -r $(DATA_DIR)
 
 .PHONY: all clean
