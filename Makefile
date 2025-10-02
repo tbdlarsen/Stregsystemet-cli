@@ -23,7 +23,7 @@ else
 endif
 
 ifeq ($(OS_SUPPORTED),no)
-$(error OS not supported: $(UNAME_S))
+	$(error OS not supported: $(UNAME_S))
 endif
 
 all: clean $(TARGET)
